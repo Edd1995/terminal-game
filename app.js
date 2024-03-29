@@ -94,7 +94,7 @@ const randomPlayer = () => {
 }
 
 
-// MISS OR HIT.. WORKS
+// MISS OR HIT.. ... Doesnt lower enemy hp
 const missOrHit = (user, user2, move, turn) => { 
     let rand = 0;
     let rand2 = 0;
@@ -114,7 +114,7 @@ const missOrHit = (user, user2, move, turn) => {
             player.hp -= move.damage;
             damage(user, user2, move);
         }
-        else {
+        else if (!true ){
             computer.hp -= move.damage;
             damage(user, user2, move);
         }
@@ -123,15 +123,15 @@ const missOrHit = (user, user2, move, turn) => {
 }
 
 // WORKS
-const chooseMove = (choice, player) => { 
+const chooseMove = (choice, user) => { 
     if (choice === '1') {
-        return player.specialMoves[0]
+        return user.specialMoves[0]
     }
     else if (choice === '2') {
-        return player.specialMoves[1]
+        return user.specialMoves[1]
     }
     else { 
-        return player.specialMoves[2]
+        return user.specialMoves[2]
     }
 }
 /// SOMETHING DOESNT WORK
@@ -142,14 +142,14 @@ const fight = (player) => {
         missOrHit(player, computer, move, turn);
         turn = false;
     }
-    else
+    else if (!true)
         computerTurn()
         turn = true;
         fight(player);
 }
 
 const computerTurn = () => { 
-    let randMove = Math.floor(Math.random() * 3)
+    let randMove = Math.floor(Math.random() * 3) 
     randMove = chooseMove(randMove, computer);
     missOrHit(computer, player, randMove, !turn);
 
