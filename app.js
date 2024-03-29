@@ -94,33 +94,22 @@ const randomPlayer = () => {
 }
 
 
-// MISS OR HIT.. ... Doesnt lower enemy hp
+// MISS OR HIT.. 
 const missOrHit = (user, user2, move, turn) => { 
-    let rand = 0;
-    let rand2 = 0;
-    rand = Math.floor(Math.random() * 100)
-    if (rand > user.specialMoves[0].successRate) {
-         rand2 = Math.floor(Math.random() * 10)
-        if (rand2 > 5) {
-            return console.log(`${user.name} missed!`)
-        }
-        else {
-            return console.log(`${user2.name} dodged`)
-        }
-
-    }
-    else { 
+    let rand = Math.floor(Math.random() * 100)
+    if (rand > move.successRate) {
+        console.log(`${user.name} missed!`);
+    } else {
         if (turn) {
-            player.hp -= move.damage;
+            user2.hp -= move.damage;
             damageText(user, user2, move);
+        } else {
+            user.hp -= move.damage;
+            damageText(user2, user, move);
         }
-        else if (!true ){
-            computer.hp -= move.damage;
-            damageText(user, user2, move);
-        }
-
     }
 }
+
 
 // WORKS
 const chooseMove = (choice, user) => { 
@@ -141,12 +130,15 @@ const fight = (player) => {
         move = chooseMove(move, player);
         missOrHit(player, computer, move, turn);
         turn = false;
-    }
-    else if (!true)
-        computerTurn()
+        fight(player);
+    } else {
+        computerTurn();
         turn = true;
         fight(player);
+    }
 }
+
+
 
 const computerTurn = () => { 
     let randMove = Math.floor(Math.random() * 3) 
