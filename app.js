@@ -145,7 +145,7 @@ const fight = (player) => {
     else
         computerTurn()
         turn = true;
-        fight();
+        fight(player);
 }
 
 const computerTurn = () => { 
