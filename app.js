@@ -112,11 +112,11 @@ const missOrHit = (user, user2, move, turn) => {
     else { 
         if (turn) {
             player.hp -= move.damage;
-            damage(user, user2, move);
+            damageText(user, user2, move);
         }
         else if (!true ){
             computer.hp -= move.damage;
-            damage(user, user2, move);
+            damageText(user, user2, move);
         }
 
     }
@@ -155,8 +155,8 @@ const computerTurn = () => {
 
 }
 
-// Damage // Works
-const damage = (user,user2,move)=>{ 
+// Damage text
+const damageText = (user,user2,move)=>{ 
         console.clear();
         playerStats(player);
         computerStats(computer);
